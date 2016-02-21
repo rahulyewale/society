@@ -40,8 +40,8 @@
 			<version>4.1.1.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>com.personal.common</groupId>
-			<artifactId>personal-common</artifactId>
+			<groupId>com.society.common</groupId>
+			<artifactId>society-common</artifactId>
 			<version>1.0</version>
 		</dependency>
 	</dependencies>
