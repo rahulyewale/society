@@ -1,0 +1,700 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.2.4
+-- Dumped by pg_dump version 9.2.4
+-- Started on 2016-02-21 09:46:19
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 184 (class 3079 OID 11727)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2009 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 168 (class 1259 OID 33933)
+-- Name: application_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE application_user (
+    application_user_id bigint NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    login_id character varying,
+    login_password character varying,
+    created_by character varying,
+    created_date timestamp without time zone,
+    modified_by character varying,
+    modified_date timestamp without time zone
+);
+
+
+ALTER TABLE public.application_user OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 33939)
+-- Name: application_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE application_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.application_user_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 34178)
+-- Name: bank_master; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE bank_master (
+    bank_master_id bigint NOT NULL,
+    bank_name character varying,
+    created_by character varying,
+    modified_by character varying,
+    created_date timestamp without time zone,
+    modified_date timestamp without time zone
+);
+
+
+ALTER TABLE public.bank_master OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 34199)
+-- Name: bank_master_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE bank_master_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.bank_master_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 33941)
+-- Name: expense; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE expense (
+    expense_id bigint NOT NULL,
+    expense_type_id bigint,
+    expense_description character varying,
+    is_investment boolean,
+    expense_amount double precision,
+    created_by character varying,
+    modified_by character varying,
+    application_user_id bigint,
+    expense_date timestamp without time zone,
+    created_date timestamp without time zone,
+    modified_date timestamp without time zone
+);
+
+
+ALTER TABLE public.expense OWNER TO postgres;
+
+--
+-- TOC entry 171 (class 1259 OID 33947)
+-- Name: expense_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE expense_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.expense_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 172 (class 1259 OID 33949)
+-- Name: expense_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE expense_type (
+    expense_type_name character varying,
+    expense_type_id bigint NOT NULL,
+    created_by character varying,
+    created_date time without time zone,
+    modified_by character varying,
+    modified_date time without time zone
+);
+
+
+ALTER TABLE public.expense_type OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 33955)
+-- Name: expense_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE expense_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.expense_type_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 33957)
+-- Name: income; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE income (
+    income_id bigint NOT NULL,
+    income_description character varying,
+    income_type_id bigint NOT NULL,
+    income_amount double precision,
+    created_by character varying,
+    modified_by character varying,
+    application_user_id bigint,
+    income_date timestamp without time zone,
+    created_date timestamp without time zone,
+    modified_date timestamp without time zone
+);
+
+
+ALTER TABLE public.income OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 33963)
+-- Name: income_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE income_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.income_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 33965)
+-- Name: income_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE income_type (
+    income_type_name character varying,
+    income_type_id bigint NOT NULL,
+    created_by character varying,
+    created_date time without time zone,
+    modified_by character varying,
+    modified_date time without time zone
+);
+
+
+ALTER TABLE public.income_type OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 33971)
+-- Name: income_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE income_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.income_type_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 33973)
+-- Name: item_info; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE item_info (
+    itemid numeric(12,0) NOT NULL,
+    itemname character varying(20),
+    date_test date
+);
+
+
+ALTER TABLE public.item_info OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 33976)
+-- Name: itemid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE itemid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.itemid_seq OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 34186)
+-- Name: user_bank_details; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE user_bank_details (
+    user_bank_dtls_id bigint NOT NULL,
+    bank_master_id bigint NOT NULL,
+    netbanking_customer_id character varying,
+    netbanking_login_password character varying,
+    netbanking_transaction_password character varying,
+    netbanking_profile_password character varying,
+    savings_account_number character varying,
+    current_account_number character varying,
+    od_account_number character varying,
+    credit_card_no character varying,
+    credit_card_ccv character varying,
+    credit_card_validity_from character varying,
+    credit_card_validity_to character varying,
+    credit_card_pin character varying,
+    debit_card_no character varying,
+    debit_card_ccv character varying,
+    debit_card_validity_from character varying,
+    debit_card_validity_to character varying,
+    dedit_card_pin character varying,
+    created_by character varying,
+    modified_by character varying,
+    application_user_id bigint,
+    created_date timestamp without time zone,
+    modified_date timestamp without time zone,
+    ifsc_code character varying
+);
+
+
+ALTER TABLE public.user_bank_details OWNER TO postgres;
+
+--
+-- TOC entry 183 (class 1259 OID 34201)
+-- Name: user_bank_dtls_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE user_bank_dtls_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_bank_dtls_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 1986 (class 0 OID 33933)
+-- Dependencies: 168
+-- Data for Name: application_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY application_user (application_user_id, first_name, last_name, login_id, login_password, created_by, created_date, modified_by, modified_date) FROM stdin;
+2	Yuvraj	Yewale	Y1234	Y1234	\N	\N	\N	\N
+3	Sunita	Yewale	S1234	S1234	\N	\N	\N	\N
+1	Rahul	Yewale	RY1234	RY1234	\N	\N	\N	\N
+4	Radha	Yewale	RD1234	RD1234	\N	\N	\N	\N
+\.
+
+
+--
+-- TOC entry 2010 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: application_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('application_user_id_seq', 1, false);
+
+
+--
+-- TOC entry 1998 (class 0 OID 34178)
+-- Dependencies: 180
+-- Data for Name: bank_master; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY bank_master (bank_master_id, bank_name, created_by, modified_by, created_date, modified_date) FROM stdin;
+1	HDFC	SYstem	SYstem	\N	\N
+2	SBI	SYstem	\N	\N	\N
+3	BOI	SYstem	\N	\N	\N
+4	ICICI	SYstem	\N	\N	\N
+\.
+
+
+--
+-- TOC entry 2011 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: bank_master_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('bank_master_id_seq', 2, true);
+
+
+--
+-- TOC entry 1988 (class 0 OID 33941)
+-- Dependencies: 170
+-- Data for Name: expense; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY expense (expense_id, expense_type_id, expense_description, is_investment, expense_amount, created_by, modified_by, application_user_id, expense_date, created_date, modified_date) FROM stdin;
+1	1	sdsd	f	200	sds	xzcvcxv	1	2015-02-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+2	1	sdsd	f	2121	d	dfdf	1	2015-03-01 10:23:54	2015-03-01 10:23:54	2015-03-01 10:23:54
+33	29	Auto	f	66	sds	xzcvcxv	1	2015-01-08 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+34	11	Dere	f	250	sds	xzcvcxv	1	2015-01-08 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+35	28	shopping	f	50	sds	xzcvcxv	1	2015-01-08 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+36	11	Dere	f	500	sds	xzcvcxv	1	2015-01-09 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+37	29	Auto	f	40	sds	xzcvcxv	1	2015-01-09 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+38	28	salad,iron,flowers,clips	f	120	sds	xzcvcxv	1	2015-01-09 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+3	16	From Satara	f	650	sds	xzcvcxv	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+4	24	Shopping	f	200	sds	xzcvcxv	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+39	24	ShoppingAtulK	f	1500	sds	xzcvcxv	1	2015-01-10 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+6	28	Iron	f	35	sds	xzcvcxv	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+7	28	Milk	f	52	sds	xzcvcxv	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+8	16	Auto	f	40	sds	xzcvcxv	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+9	16	Green salad	f	16	sds	xzcvcxv	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+5	14	Light	f	780	sds	xzcvcxv	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+10	16	Green salad	f	16	sds	xzcvcxv	1	2015-01-02 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+11	27	Pleasure Servicing	f	860	sds	xzcvcxv	1	2015-01-03 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+12	24	Devu&Arnav	f	840	sds	xzcvcxv	1	2015-01-03 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+13	11	Devu	f	200	sds	xzcvcxv	1	2015-01-03 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+14	11	Medicines	f	380	sds	xzcvcxv	1	2015-01-03 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+15	28	Milk	f	52	sds	xzcvcxv	1	2015-01-03 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+16	28	Hair Cut&Gajra	f	80	sds	xzcvcxv	1	2015-01-03 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+17	13	Housekeeping	f	1300	sds	xzcvcxv	1	2015-01-04 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+18	29	Auto	f	15	sds	xzcvcxv	1	2015-01-04 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+19	7	Apache	f	200	sds	xzcvcxv	1	2015-01-04 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+20	28	Tea&GreenSalad	f	35	sds	xzcvcxv	1	2015-01-04 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+21	28	Milk	f	52	sds	xzcvcxv	1	2015-01-04 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+22	28	Auto&Breakfast	f	110	sds	xzcvcxv	1	2015-01-04 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+23	28	AvinashGift	f	100	sds	xzcvcxv	1	2015-01-05 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+24	29	Auto	f	20	sds	xzcvcxv	1	2015-01-05 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+25	29	Milk	f	52	sds	xzcvcxv	1	2015-01-05 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+27	29	Auto	f	45	sds	xzcvcxv	1	2015-01-06 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+40	28	BikeBattery,SimCard	f	1830	sds	xzcvcxv	1	2015-01-10 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+29	7	APache	f	200	sds	xzcvcxv	1	2015-01-07 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+30	29	Auto	f	40	sds	xzcvcxv	1	2015-01-07 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+41	28	Milk	f	52	sds	xzcvcxv	1	2015-01-11 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+26	28	fruits,iron,auto	f	370	sds	xzcvcxv	1	2015-01-05 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+28	28	Kurla	f	140	sds	xzcvcxv	1	2015-01-07 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+31	28	InternetBill	f	500	sds	xzcvcxv	1	2015-01-07 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+32	28	fruits,veg.	f	200	sds	xzcvcxv	1	2015-01-08 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+\.
+
+
+--
+-- TOC entry 2012 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: expense_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('expense_id_seq', 1, false);
+
+
+--
+-- TOC entry 1990 (class 0 OID 33949)
+-- Dependencies: 172
+-- Data for Name: expense_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY expense_type (expense_type_name, expense_type_id, created_by, created_date, modified_by, modified_date) FROM stdin;
+Bus Pass	1	\N	\N	\N	\N
+Car Loan EMI	2	\N	\N	\N	\N
+College Fee	3	\N	\N	\N	\N
+Dinner	4	\N	\N	\N	\N
+Education Loan EMI	5	\N	\N	\N	\N
+Fixed Deposit	6	\N	\N	\N	\N
+Fuel	7	\N	\N	\N	\N
+Gas Bill	8	\N	\N	\N	\N
+Grocery	9	\N	\N	\N	\N
+Home Loan EMI	10	\N	\N	\N	\N
+Hospital	11	\N	\N	\N	\N
+House Rent	12	\N	\N	\N	\N
+Housekeeping	13	\N	\N	\N	\N
+Light Bill	14	\N	\N	\N	\N
+Lunch	15	\N	\N	\N	\N
+Movie	17	\N	\N	\N	\N
+Mutual Fund	18	\N	\N	\N	\N
+Policy Premium	19	\N	\N	\N	\N
+PPF	20	\N	\N	\N	\N
+Railway Pass	21	\N	\N	\N	\N
+Recurring Deposit	22	\N	\N	\N	\N
+School Fee	23	\N	\N	\N	\N
+Shopping	24	\N	\N	\N	\N
+Other	28	\N	\N	\N	\N
+Auto	29	\N	\N	\N	\N
+M.Travelling	16	\N	\N	\N	\N
+Soc.Maintainance	25	\N	\N	\N	\N
+Veh.Servicing	27	\N	\N	\N	\N
+Veh.Insurance	26	\N	\N	\N	\N
+\.
+
+
+--
+-- TOC entry 2013 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: expense_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('expense_type_id_seq', 28, true);
+
+
+--
+-- TOC entry 1992 (class 0 OID 33957)
+-- Dependencies: 174
+-- Data for Name: income; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY income (income_id, income_description, income_type_id, income_amount, created_by, modified_by, application_user_id, income_date, created_date, modified_date) FROM stdin;
+1	R.salary	1	61500	system	dd	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+4	e	1	2222	\N	\N	\N	\N	\N	\N
+2	Y.salary	1	48000	ss	ss	1	2015-01-01 10:23:54	2015-12-01 10:23:54	2015-12-01 10:23:54
+3	Transferwise	1	19600	system	system	1	2015-01-01 10:23:54	2015-01-01 10:23:54	2015-01-01 10:23:54
+\.
+
+
+--
+-- TOC entry 2014 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: income_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('income_id_seq', 1, false);
+
+
+--
+-- TOC entry 1994 (class 0 OID 33965)
+-- Dependencies: 176
+-- Data for Name: income_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY income_type (income_type_name, income_type_id, created_by, created_date, modified_by, modified_date) FROM stdin;
+House Rent	2	\N	\N	\N	\N
+Other	3	\N	\N	\N	\N
+Salary	1	\N	\N	\N	\N
+\.
+
+
+--
+-- TOC entry 2015 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: income_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('income_type_id_seq', 3, true);
+
+
+--
+-- TOC entry 1996 (class 0 OID 33973)
+-- Dependencies: 178
+-- Data for Name: item_info; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY item_info (itemid, itemname, date_test) FROM stdin;
+1	Item Name	\N
+2	Item Name	\N
+3	Item Name	\N
+4	Item Name	\N
+\.
+
+
+--
+-- TOC entry 2016 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: itemid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('itemid_seq', 4, true);
+
+
+--
+-- TOC entry 1999 (class 0 OID 34186)
+-- Dependencies: 181
+-- Data for Name: user_bank_details; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY user_bank_details (user_bank_dtls_id, bank_master_id, netbanking_customer_id, netbanking_login_password, netbanking_transaction_password, netbanking_profile_password, savings_account_number, current_account_number, od_account_number, credit_card_no, credit_card_ccv, credit_card_validity_from, credit_card_validity_to, credit_card_pin, debit_card_no, debit_card_ccv, debit_card_validity_from, debit_card_validity_to, dedit_card_pin, created_by, modified_by, application_user_id, created_date, modified_date, ifsc_code) FROM stdin;
+50	2	\N	\N	\N	\N	\N	\N	\N	\N	sasasas	\N	\N	sasasas	\N	sasasas	\N	\N	\N	\N	\N	\N	\N	\N	sasasas
+51	2	\N	\N	\N	\N	\N	\N	\N	\N	sasasas	\N	\N	sasasas	\N	sasasas	\N	\N	\N	\N	\N	\N	\N	\N	sasasas
+100	1	HDFC1234	HDFC1234	HDFC1234	HDFC1234	HDFC1234	HDFC1234	HDFC1234	HDFC1234	HDFC1234	HDFC1234	\N	HDFC1234	HDFC1234	HDFC1234qHDFC1234	HDFC1234	\N	HDFC1234	\N	\N	\N	\N	\N	HDFC1234
+\.
+
+
+--
+-- TOC entry 2017 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: user_bank_dtls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('user_bank_dtls_id_seq', 2, true);
+
+
+--
+-- TOC entry 1966 (class 2606 OID 33979)
+-- Name: application_user_p_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY application_user
+    ADD CONSTRAINT application_user_p_key PRIMARY KEY (application_user_id);
+
+
+--
+-- TOC entry 1978 (class 2606 OID 34185)
+-- Name: bank_master_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY bank_master
+    ADD CONSTRAINT bank_master_pkey PRIMARY KEY (bank_master_id);
+
+
+--
+-- TOC entry 1968 (class 2606 OID 33981)
+-- Name: expense_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY expense
+    ADD CONSTRAINT expense_pkey PRIMARY KEY (expense_id);
+
+
+--
+-- TOC entry 1970 (class 2606 OID 33983)
+-- Name: expense_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY expense_type
+    ADD CONSTRAINT expense_type_pkey PRIMARY KEY (expense_type_id);
+
+
+--
+-- TOC entry 1972 (class 2606 OID 33985)
+-- Name: income_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY income
+    ADD CONSTRAINT income_pkey PRIMARY KEY (income_id);
+
+
+--
+-- TOC entry 1974 (class 2606 OID 33987)
+-- Name: income_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY income_type
+    ADD CONSTRAINT income_type_pkey PRIMARY KEY (income_type_id);
+
+
+--
+-- TOC entry 1976 (class 2606 OID 33989)
+-- Name: oms_batch_txn_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY item_info
+    ADD CONSTRAINT oms_batch_txn_pkey PRIMARY KEY (itemid);
+
+
+--
+-- TOC entry 1980 (class 2606 OID 34193)
+-- Name: user_bank_details_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY user_bank_details
+    ADD CONSTRAINT user_bank_details_pkey PRIMARY KEY (user_bank_dtls_id);
+
+
+--
+-- TOC entry 1981 (class 2606 OID 33990)
+-- Name: expense_application_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY expense
+    ADD CONSTRAINT expense_application_user_id FOREIGN KEY (application_user_id) REFERENCES application_user(application_user_id);
+
+
+--
+-- TOC entry 1982 (class 2606 OID 33995)
+-- Name: expense_expense_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY expense
+    ADD CONSTRAINT expense_expense_type_id_fkey FOREIGN KEY (expense_type_id) REFERENCES expense_type(expense_type_id);
+
+
+--
+-- TOC entry 1983 (class 2606 OID 34000)
+-- Name: income_application_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY income
+    ADD CONSTRAINT income_application_user_id FOREIGN KEY (application_user_id) REFERENCES application_user(application_user_id);
+
+
+--
+-- TOC entry 1984 (class 2606 OID 34005)
+-- Name: income_income_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY income
+    ADD CONSTRAINT income_income_type_id_fkey FOREIGN KEY (income_type_id) REFERENCES income_type(income_type_id);
+
+
+--
+-- TOC entry 1985 (class 2606 OID 34194)
+-- Name: user_bank_details_application_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_bank_details
+    ADD CONSTRAINT user_bank_details_application_user_id FOREIGN KEY (application_user_id) REFERENCES application_user(application_user_id);
+
+
+--
+-- TOC entry 2008 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-02-21 09:46:23
+
+--
+-- PostgreSQL database dump complete
+--
+
