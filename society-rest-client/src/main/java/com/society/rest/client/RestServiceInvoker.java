@@ -4,8 +4,8 @@ package com.society.rest.client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
-import com.personal.common.ServiceRequest;
-import com.personal.common.ServiceResponse;
+import com.society.common.ServiceRequest;
+import com.society.common.ServiceResponse;
 
 public class RestServiceInvoker
 {
