@@ -25,7 +25,7 @@
 	<br>
 	<br>
 	<center>
-		<b>Personal Utility Service Started</b>
+		<b>Society Rest Service Started</b>
 	</center>
 </body>
 </html>
