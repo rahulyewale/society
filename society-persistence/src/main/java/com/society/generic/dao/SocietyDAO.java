@@ -1,6 +1,6 @@
 package com.society.generic.dao;
 
-public interface PersonalDAO<T> {
+public interface SocietyDAO<T> {
 
 	T save(T object) throws Exception;
 

@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.society.common.DateRange;
 import com.society.dao.ExpenseDAO;
 import com.society.domain.entity.Expense;
-import com.society.generic.dao.impl.PersonalDAOImpl;
+import com.society.generic.dao.impl.SocietyDAOImpl;
 
 /**
  * The Class ExpenseDAOImpl.
  */
 @Repository
-public class ExpenseDAOImpl extends PersonalDAOImpl<Expense> implements ExpenseDAO
+public class ExpenseDAOImpl extends SocietyDAOImpl<Expense> implements ExpenseDAO
 {
 
 	/* (non-Javadoc)

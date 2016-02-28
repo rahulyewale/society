@@ -16,9 +16,9 @@
 package com.society.dao;
 
 import com.society.domain.entity.ItemInfo;
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
-public interface ItemInfoDAO  extends PersonalDAO<ItemInfo>
+public interface ItemInfoDAO  extends SocietyDAO<ItemInfo>
 {
 
 }

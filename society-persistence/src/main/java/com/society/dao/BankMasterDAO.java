@@ -18,9 +18,9 @@ package com.society.dao;
 import java.util.List;
 
 import com.society.domain.entity.BankMaster;
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
-public interface BankMasterDAO  extends PersonalDAO<BankMaster>
+public interface BankMasterDAO  extends SocietyDAO<BankMaster>
 {
 	List<BankMaster> getBankMasterList();
 }

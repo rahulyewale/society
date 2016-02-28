@@ -16,9 +16,9 @@
 package com.society.dao;
 
 import com.society.domain.entity.ApplicationUser;
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
-public interface ApplicationUserDAO  extends PersonalDAO<ApplicationUser>
+public interface ApplicationUserDAO  extends SocietyDAO<ApplicationUser>
 {
 
 }

@@ -16,8 +16,8 @@
 package com.society.dao;
 
 import com.society.domain.entity.UserBankDetail;
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
-public interface UserBankDetailsDAO  extends PersonalDAO<UserBankDetail>
+public interface UserBankDetailsDAO  extends SocietyDAO<UserBankDetail>
 {
 }

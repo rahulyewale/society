@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.society.common.DateRange;
 import com.society.domain.entity.Expense;
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
 /**
  * The Interface ExpenseDAO.
  */
-public interface ExpenseDAO  extends PersonalDAO<Expense>
+public interface ExpenseDAO  extends SocietyDAO<Expense>
 {
 	
 	/**

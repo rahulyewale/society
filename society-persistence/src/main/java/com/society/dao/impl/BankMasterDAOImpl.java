@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.society.dao.BankMasterDAO;
 import com.society.domain.entity.BankMaster;
-import com.society.generic.dao.impl.PersonalDAOImpl;
+import com.society.generic.dao.impl.SocietyDAOImpl;
 
 
 @Repository
-public class BankMasterDAOImpl extends PersonalDAOImpl<BankMaster> implements BankMasterDAO 
+public class BankMasterDAOImpl extends SocietyDAOImpl<BankMaster> implements BankMasterDAO 
 {
 
 	@Override

@@ -23,9 +23,9 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
-public abstract class PersonalDAOImpl<T> implements PersonalDAO<T>
+public abstract class SocietyDAOImpl<T> implements SocietyDAO<T>
 {
 
 	/** The entity manager. */
@@ -36,7 +36,7 @@ public abstract class PersonalDAOImpl<T> implements PersonalDAO<T>
 	private Class<T> type;
 
 	@SuppressWarnings({ "rawtypes", "unchecked"})
-	public PersonalDAOImpl()
+	public SocietyDAOImpl()
 	{
 		Type t = getClass().getGenericSuperclass();
 		ParameterizedType pt = (ParameterizedType) t;

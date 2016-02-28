@@ -19,12 +19,12 @@ import java.util.List;
 
 import com.society.common.DateRange;
 import com.society.domain.entity.Income;
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
 /**
  * The Interface IncomeDAO.
  */
-public interface IncomeDAO  extends PersonalDAO<Income>
+public interface IncomeDAO  extends SocietyDAO<Income>
 {
 
 	/**

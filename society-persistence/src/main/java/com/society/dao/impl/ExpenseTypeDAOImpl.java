@@ -4,11 +4,11 @@ import org.springframework.stereotype.Repository;
 
 import com.society.dao.ExpenseTypeDAO;
 import com.society.domain.entity.ExpenseType;
-import com.society.generic.dao.impl.PersonalDAOImpl;
+import com.society.generic.dao.impl.SocietyDAOImpl;
 
 
 @Repository
-public class ExpenseTypeDAOImpl extends PersonalDAOImpl<ExpenseType> implements ExpenseTypeDAO 
+public class ExpenseTypeDAOImpl extends SocietyDAOImpl<ExpenseType> implements ExpenseTypeDAO 
 {
 
 }

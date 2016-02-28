@@ -16,9 +16,9 @@
 package com.society.dao;
 
 import com.society.domain.entity.ExpenseType;
-import com.society.generic.dao.PersonalDAO;
+import com.society.generic.dao.SocietyDAO;
 
-public interface ExpenseTypeDAO  extends PersonalDAO<ExpenseType>
+public interface ExpenseTypeDAO  extends SocietyDAO<ExpenseType>
 {
 
 }
